@@ -3,13 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _eventEmitter = _interopRequireDefault(require("event-emitter"));
 
 var _Utils = _interopRequireDefault(require("../common/Utils"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -28,7 +28,7 @@ function () {
 
     _classCallCheck(this, MobileControls);
 
-    Object.assign(this, _eventEmitter.default.prototype);
+    Object.assign(this, _eventEmitter["default"].prototype);
     this.clientEngine = clientEngine;
     this.renderer = clientEngine.renderer;
     this.touchContainer = document.querySelector('.pixiContainer');
@@ -112,7 +112,7 @@ function () {
       var dx = this.currentTouch.x - playerShipScreenCoords.x;
       var dy = this.currentTouch.y - playerShipScreenCoords.y;
 
-      var shortestArc = _Utils.default.shortestArc(Math.atan2(dx, -dy), Math.atan2(Math.sin(playerShip.actor.shipContainerSprite.rotation + Math.PI / 2), Math.cos(playerShip.actor.shipContainerSprite.rotation + Math.PI / 2)));
+      var shortestArc = _Utils["default"].shortestArc(Math.atan2(dx, -dy), Math.atan2(Math.sin(playerShip.actor.shipContainerSprite.rotation + Math.PI / 2), Math.cos(playerShip.actor.shipContainerSprite.rotation + Math.PI / 2)));
 
       var rotateThreshold = 0.3;
       var distanceThreshold = 120; // turn left or right
@@ -144,5 +144,5 @@ function () {
   return MobileControls;
 }();
 
-exports.default = MobileControls;
+exports["default"] = MobileControls;
 //# sourceMappingURL=MobileControls.js.map

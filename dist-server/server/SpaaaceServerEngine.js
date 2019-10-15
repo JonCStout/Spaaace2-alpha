@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _lanceGg = require("lance-gg");
 
@@ -149,5 +149,5 @@ function (_ServerEngine) {
   return SpaaaceServerEngine;
 }(_lanceGg.ServerEngine);
 
-exports.default = SpaaaceServerEngine;
+exports["default"] = SpaaaceServerEngine;
 //# sourceMappingURL=SpaaaceServerEngine.js.map

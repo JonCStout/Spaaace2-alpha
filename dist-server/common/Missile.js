@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _lanceGg = require("lance-gg");
 
@@ -101,5 +101,5 @@ function (_DynamicObject) {
   return Missile;
 }(_lanceGg.DynamicObject);
 
-exports.default = Missile;
+exports["default"] = Missile;
 //# sourceMappingURL=Missile.js.map

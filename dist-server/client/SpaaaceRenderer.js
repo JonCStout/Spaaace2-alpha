@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _lanceGg = require("lance-gg");
 
@@ -11,7 +11,7 @@ var _Utils = _interopRequireDefault(require("./../common/Utils"));
 
 var _Ship = _interopRequireDefault(require("../common/Ship"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -109,7 +109,7 @@ function (_Renderer) {
 
           _this2.setupStage();
 
-          if (_Utils.default.isTouchDevice()) {
+          if (_Utils["default"].isTouchDevice()) {
             document.body.classList.add('touch');
           } else if (isMacintosh()) {
             document.body.classList.add('mac');
@@ -162,7 +162,7 @@ function (_Renderer) {
 
       this.elapsedTime = Date.now(); // debug
 
-      if ('showworldbounds' in _Utils.default.getUrlVars()) {
+      if ('showworldbounds' in _Utils["default"].getUrlVars()) {
         var graphics = new PIXI.Graphics();
         graphics.beginFill(0xFFFFFF);
         graphics.alpha = 0.1;
@@ -200,10 +200,8 @@ function (_Renderer) {
       var viewportSeesTopBound = this.camera.y > 0;
       var viewportSeesBottomBound = this.camera.y < this.viewportHeight - worldHeight;
 
-      var _arr = Object.keys(this.sprites);
-
-      for (var _i = 0; _i < _arr.length; _i++) {
-        var objId = _arr[_i];
+      for (var _i = 0, _Object$keys = Object.keys(this.sprites); _i < _Object$keys.length; _i++) {
+        var objId = _Object$keys[_i];
         var objData = this.gameEngine.world.objects[objId];
         var sprite = this.sprites[objId];
 
@@ -213,14 +211,14 @@ function (_Renderer) {
             sprite.actor.thrustEmitter.emit = !!objData.showThrust;
           }
 
-          if (objData instanceof _Ship.default && sprite != this.playerShip) {
+          if (objData instanceof _Ship["default"] && sprite != this.playerShip) {
             this.updateOffscreenIndicator(objData);
           }
 
           sprite.x = objData.position.x;
           sprite.y = objData.position.y;
 
-          if (objData instanceof _Ship.default) {
+          if (objData instanceof _Ship["default"]) {
             sprite.actor.shipContainerSprite.rotation = this.gameEngine.world.objects[objId].angle * Math.PI / 180;
           } else {
             sprite.rotation = this.gameEngine.world.objects[objId].angle * Math.PI / 180;
@@ -446,10 +444,8 @@ function (_Renderer) {
         }
       }
 
-      var _arr2 = Object.keys(data);
-
-      for (var _i2 = 0; _i2 < _arr2.length; _i2++) {
-        var id = _arr2[_i2];
+      for (var _i2 = 0, _Object$keys2 = Object.keys(data); _i2 < _Object$keys2.length; _i2++) {
+        var id = _Object$keys2[_i2];
         var scoreEl = scoreContainer.querySelector("[data-obj-id='".concat(id, "']")); // create score line if it doesn't exist
 
         if (scoreEl == null) {
@@ -525,7 +521,7 @@ function (_Renderer) {
   return SpaaaceRenderer;
 }(_lanceGg.Renderer);
 
-exports.default = SpaaaceRenderer;
+exports["default"] = SpaaaceRenderer;
 
 function getCentroid(objects) {
   var maxDistance = 500; // max distance to add to the centroid
@@ -537,13 +533,11 @@ function getCentroid(objects) {
   };
   var selectedShip = null;
 
-  var _arr3 = Object.keys(objects);
-
-  for (var _i3 = 0; _i3 < _arr3.length; _i3++) {
-    var id = _arr3[_i3];
+  for (var _i3 = 0, _Object$keys3 = Object.keys(objects); _i3 < _Object$keys3.length; _i3++) {
+    var id = _Object$keys3[_i3];
     var obj = objects[id];
 
-    if (obj instanceof _Ship.default) {
+    if (obj instanceof _Ship["default"]) {
       if (selectedShip == null) selectedShip = obj;
       var objDistance = Math.sqrt(Math.pow(selectedShip.position.x - obj.position.y, 2) + Math.pow(selectedShip.position.y - obj.position.y, 2));
 

@@ -3,13 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _lanceGg = require("lance-gg");
 
 var _ShipActor = _interopRequireDefault(require("../client/ShipActor"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -54,7 +54,7 @@ function (_DynamicObject) {
       if (_lanceGg.Renderer) {
         var renderer = _lanceGg.Renderer.getInstance();
 
-        var shipActor = new _ShipActor.default(renderer);
+        var shipActor = new _ShipActor["default"](renderer);
         var sprite = shipActor.sprite;
         renderer.sprites[this.id] = sprite;
         sprite.id = this.id;
@@ -162,10 +162,8 @@ function (_DynamicObject) {
       var closestTarget = null;
       var closestDistance2 = Infinity;
 
-      var _arr = Object.keys(this.gameEngine.world.objects);
-
-      for (var _i = 0; _i < _arr.length; _i++) {
-        var objId = _arr[_i];
+      for (var _i = 0, _Object$keys = Object.keys(this.gameEngine.world.objects); _i < _Object$keys.length; _i++) {
+        var objId = _Object$keys[_i];
         var obj = this.gameEngine.world.objects[objId];
 
         if (obj != this) {
@@ -231,5 +229,5 @@ function (_DynamicObject) {
   return Ship;
 }(_lanceGg.DynamicObject);
 
-exports.default = Ship;
+exports["default"] = Ship;
 //# sourceMappingURL=Ship.js.map

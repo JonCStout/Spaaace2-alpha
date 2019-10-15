@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _howler = _interopRequireDefault(require("howler"));
 
@@ -17,7 +17,7 @@ var _Ship = _interopRequireDefault(require("../common/Ship"));
 
 var _Utils = _interopRequireDefault(require("../common/Utils"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -49,7 +49,7 @@ function (_ClientEngine) {
   function SpaaaceClientEngine(gameEngine, options) {
     _classCallCheck(this, SpaaaceClientEngine);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(SpaaaceClientEngine).call(this, gameEngine, options, _SpaaaceRenderer.default));
+    return _possibleConstructorReturn(this, _getPrototypeOf(SpaaaceClientEngine).call(this, gameEngine, options, _SpaaaceRenderer["default"]));
   }
 
   _createClass(SpaaaceClientEngine, [{
@@ -61,7 +61,7 @@ function (_ClientEngine) {
 
 
       this.gameEngine.on('objectDestroyed', function (obj) {
-        if (obj instanceof _Ship.default && _this.gameEngine.isOwnedByPlayer(obj)) {
+        if (obj instanceof _Ship["default"] && _this.gameEngine.isOwnedByPlayer(obj)) {
           document.body.classList.add('lostGame');
           document.querySelector('#tryAgain').disabled = false;
         }
@@ -69,14 +69,14 @@ function (_ClientEngine) {
       this.gameEngine.once('renderer.ready', function () {
         // click event for "try again" button
         document.querySelector('#tryAgain').addEventListener('click', function () {
-          if (_Utils.default.isTouchDevice()) {
+          if (_Utils["default"].isTouchDevice()) {
             _this.renderer.enableFullScreen();
           }
 
           _this.socket.emit('requestRestart');
         });
         document.querySelector('#joinGame').addEventListener('click', function (clickEvent) {
-          if (_Utils.default.isTouchDevice()) {
+          if (_Utils["default"].isTouchDevice()) {
             _this.renderer.enableFullScreen();
           }
 
@@ -88,8 +88,8 @@ function (_ClientEngine) {
           window.location.reload();
         }); //  Game input
 
-        if (_Utils.default.isTouchDevice()) {
-          _this.controls = new _MobileControls.default(_this);
+        if (_Utils["default"].isTouchDevice()) {
+          _this.controls = new _MobileControls["default"](_this);
 
           _this.controls.on('fire', function () {
             _this.sendInput('space');
@@ -154,7 +154,7 @@ function (_ClientEngine) {
           document.querySelector('#reconnect').disabled = false;
         });
 
-        if ('autostart' in _Utils.default.getUrlVars()) {
+        if ('autostart' in _Utils["default"].getUrlVars()) {
           _this2.socket.emit('requestRestart');
         }
       });
@@ -164,5 +164,5 @@ function (_ClientEngine) {
   return SpaaaceClientEngine;
 }(_lanceGg.ClientEngine);
 
-exports.default = SpaaaceClientEngine;
+exports["default"] = SpaaaceClientEngine;
 //# sourceMappingURL=SpaaaceClientEngine.js.map

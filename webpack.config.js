@@ -7,13 +7,14 @@ module.exports = {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js'
     },
+    mode: 'development',
     devtool: 'source-map',
     module: {
-        loaders: [
+        rules: [
             { test: /\.css$/, loader: 'style!css' },
             {
                 test: /\.scss$/,
-                loaders: ['style-loader', 'raw-loader', 'sass-loader']
+                loader: ['style-loader', 'raw-loader', 'sass-loader']
             },
             {
                 test: /\.js$/,

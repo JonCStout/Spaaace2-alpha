@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _lanceGg = require("lance-gg");
 
@@ -11,7 +11,7 @@ var _Ship = _interopRequireDefault(require("./Ship"));
 
 var _Missile = _interopRequireDefault(require("./Missile"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -59,8 +59,8 @@ function (_GameEngine) {
   _createClass(SpaaaceGameEngine, [{
     key: "registerClasses",
     value: function registerClasses(serializer) {
-      serializer.registerClass(_Ship.default);
-      serializer.registerClass(_Missile.default);
+      serializer.registerClass(_Ship["default"]);
+      serializer.registerClass(_Missile["default"]);
     }
   }, {
     key: "initWorld",
@@ -83,10 +83,10 @@ function (_GameEngine) {
           return e[k];
         });
         var ship = collisionObjects.find(function (o) {
-          return o instanceof _Ship.default;
+          return o instanceof _Ship["default"];
         });
         var missile = collisionObjects.find(function (o) {
-          return o instanceof _Missile.default;
+          return o instanceof _Missile["default"];
         });
         if (!ship || !missile) return; // make sure not to process the collision between a missile and the ship that fired it
 
@@ -113,7 +113,7 @@ function (_GameEngine) {
 
       var playerShip = this.world.queryObject({
         playerId: playerId,
-        instanceType: _Ship.default
+        instanceType: _Ship["default"]
       });
 
       if (playerShip) {
@@ -136,7 +136,7 @@ function (_GameEngine) {
     value: function makeShip(playerId) {
       var newShipX = Math.floor(Math.random() * (this.worldSettings.width - 200)) + 200;
       var newShipY = Math.floor(Math.random() * (this.worldSettings.height - 200)) + 200;
-      var ship = new _Ship.default(this, null, {
+      var ship = new _Ship["default"](this, null, {
         position: new _lanceGg.TwoVector(newShipX, newShipY)
       });
       ship.playerId = playerId;
@@ -147,7 +147,7 @@ function (_GameEngine) {
   }, {
     key: "makeMissile",
     value: function makeMissile(playerShip, inputId) {
-      var missile = new _Missile.default(this); // we want the missile location and velocity to correspond to that of the ship firing it
+      var missile = new _Missile["default"](this); // we want the missile location and velocity to correspond to that of the ship firing it
 
       missile.position.copy(playerShip.position);
       missile.velocity.copy(playerShip.velocity);
@@ -183,7 +183,7 @@ function (_GameEngine) {
     value: function reduceVisibleThrust(postStepEv) {
       if (postStepEv.isReenact) return;
       var ships = this.world.queryObjects({
-        instanceType: _Ship.default
+        instanceType: _Ship["default"]
       });
       ships.forEach(function (ship) {
         if (Number.isInteger(ship.showThrust) && ship.showThrust >= 1) ship.showThrust--;
@@ -194,5 +194,5 @@ function (_GameEngine) {
   return SpaaaceGameEngine;
 }(_lanceGg.GameEngine);
 
-exports.default = SpaaaceGameEngine;
+exports["default"] = SpaaaceGameEngine;
 //# sourceMappingURL=SpaaaceGameEngine.js.map
