@@ -48,7 +48,7 @@ export default class SpaaaceGameEngine extends GameEngine {
         });
 
         this.on('postStep', this.reduceVisibleThrust.bind(this));
-    };
+    }
 
     processInput(inputData, playerId, isServer) {
 
@@ -73,7 +73,7 @@ export default class SpaaaceGameEngine extends GameEngine {
                 this.emit('fireMissile');
             }
         }
-    };
+    }
 
     // Makes a new ship, places it randomly and adds it to the game world
     makeShip(playerId) {
@@ -89,7 +89,7 @@ export default class SpaaaceGameEngine extends GameEngine {
         console.log(`ship added: ${ship.toString()}`);
 
         return ship;
-    };
+    }
 
     makeMissile(playerShip, inputId) {
         let missile = new Missile(this);

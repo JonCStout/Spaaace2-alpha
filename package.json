@@ -17,6 +17,8 @@
     "howler": "^2.1.2",
     "json-loader": "^0.5.4",
     "lance-gg": "^4.0.8",
+    "lodash": "^4.17.15",
+    "mixin-deep": "^2.0.1",
     "node-sass": "^4.9.4",
     "null-loader": "^0.1.1",
     "pixi-particles": "^2.0.0",
@@ -25,6 +27,7 @@
     "raw-loader": "^0.5.1",
     "sass": "^1.23.0",
     "sass-loader": "^8.0.0",
+    "set-value": "^3.0.1",
     "socket.io": "^2.3.0",
     "style-loader": "^0.13.1",
     "url-loader": "^1.1.2",
@@ -36,7 +39,7 @@
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "babel-plugin-inline-json-import": "^0.3.2",
-    "eslint": "^3.10.2",
+    "eslint": "^6.5.1",
     "eslint-config-google": "^0.7.0"
   },
   "scripts": {
