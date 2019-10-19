@@ -30,11 +30,14 @@ var io = socketIO(requestHandler); // Game Server
 // Game Instances
 var gameEngine = new _SpaaaceGameEngine["default"]({
   traceLevel: _lanceGg.Lib.Trace.TRACE_NONE
-});
+}); // const gameEngine = new SpaaaceGameEngine({ traceLevel: Lib.Trace.TRACE_INFO });
+
 var serverEngine = new _SpaaaceServerEngine["default"](io, gameEngine, {
   debug: {},
   updateRate: 6,
-  timeoutInterval: 0 // no timeout
+  // original = 6
+  timeoutInterval: 300 // original = 0
+  // stepRate: 20  // original = default
 
 }); // start the game
 

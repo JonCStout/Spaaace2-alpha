@@ -1,6 +1,9 @@
 import { SimplePhysicsEngine, GameEngine, TwoVector } from 'lance-gg';
 import Ship from './Ship';
 import Missile from './Missile';
+import ShotLengthPowerUp from './ShotLengthPowerUp';
+
+const BASE_MISSILE_STEPS = 30;  // 30 is original for updateRate 6 in main.js, less for higher
 
 export default class SpaaaceGameEngine extends GameEngine {
 
@@ -18,6 +21,7 @@ export default class SpaaaceGameEngine extends GameEngine {
     registerClasses(serializer){
         serializer.registerClass(Ship);
         serializer.registerClass(Missile);
+        serializer.registerClass(ShotLengthPowerUp);
     }
 
     initWorld(){
@@ -35,15 +39,27 @@ export default class SpaaaceGameEngine extends GameEngine {
             let collisionObjects = Object.keys(e).map(k => e[k]);
             let ship = collisionObjects.find(o => o instanceof Ship);
             let missile = collisionObjects.find(o => o instanceof Missile);
-
-            if (!ship || !missile)
-                return;
+            let shotLengthPowerUp = collisionObjects.find(o => o instanceof ShotLengthPowerUp);
 
             // make sure not to process the collision between a missile and the ship that fired it
-            if (missile.playerId !== ship.playerId) {
+            if (ship && missile && missile.playerId !== ship.playerId) {
                 this.destroyMissile(missile.id);
                 this.trace.info(() => `missile by ship=${missile.playerId} hit ship=${ship.id}`);
                 this.emit('missileHit', { missile, ship });
+                return;  // skip further processing
+            }
+
+            // powerUp collision: ignore non-ship collisions and ships already powered up
+            if (ship && shotLengthPowerUp && ship.missileLifeSteps == BASE_MISSILE_STEPS) {
+                console.log(`PowerUp!  ${ship} -> ${shotLengthPowerUp}`);
+                ship.missileLifeSteps = BASE_MISSILE_STEPS * 3;  // length is 3x longer
+                this.timer.add(ship.missileLifeSteps*10, this.shotLengthPowerDown, this, [ship]);  // timer to remove powerup
+                let newX = Math.floor(Math.random()*(this.worldSettings.width-200)) + 200;
+                let newY = Math.floor(Math.random()*(this.worldSettings.height-200)) + 200;
+                // console.log('old vector: ', shotLengthPowerUp.position);
+                shotLengthPowerUp.position.set(newX, newY);  // move powerup *** not showing move?
+                // console.log('new vector: ', shotLengthPowerUp.position);
+                // return;  // skip further processing;  unneeded for last item
             }
         });
 
@@ -85,11 +101,41 @@ export default class SpaaaceGameEngine extends GameEngine {
         });
 
         ship.playerId = playerId;
+        ship.missileLifeSteps = BASE_MISSILE_STEPS;
         this.addObjectToWorld(ship);
         console.log(`ship added: ${ship.toString()}`);
 
         return ship;
     }
+
+    makeShotLengthPowerUp() {
+        let newX = Math.floor(Math.random()*(this.worldSettings.width-200)) + 200;
+        let newY = Math.floor(Math.random()*(this.worldSettings.height-200)) + 200;
+
+        let obj = new ShotLengthPowerUp(this, null, {
+            position: new TwoVector(newX, newY)
+        });
+        obj.angle = Math.floor(Math.random()*360);
+        // obj.rotationSpeed = 1;
+        obj.width = 2;
+
+        // obj.objId = id;  // don't overwrite obj.id!
+        this.addObjectToWorld(obj);
+        // console.log(`ShotLengthPowerUp added: #${obj.id}`);
+
+        return obj;
+    }
+
+    // remove powerup effect
+    shotLengthPowerDown(ship) {
+        if (ship) {
+            console.log(`PowerDown for ship: ${ship}`);
+            ship.missileLifeSteps = BASE_MISSILE_STEPS;
+        } else {
+            console.log('Can\'t powerdown a non-existant ship!');
+        }
+    }
+
 
     makeMissile(playerShip, inputId) {
         let missile = new Missile(this);
@@ -110,7 +156,7 @@ export default class SpaaaceGameEngine extends GameEngine {
 
         // if the object was added successfully to the game world, destroy the missile after some game ticks
         if (obj)
-            this.timer.add(30, this.destroyMissile, this, [obj.id]);
+            this.timer.add(playerShip.missileLifeSteps, this.destroyMissile, this, [obj.id]);
 
         return missile;
     }

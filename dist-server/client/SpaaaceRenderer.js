@@ -55,7 +55,8 @@ function (_Renderer) {
         bg2: 'assets/space2.png',
         bg3: 'assets/clouds2.png',
         bg4: 'assets/clouds1.png',
-        smokeParticle: 'assets/smokeparticle.png'
+        smokeParticle: 'assets/smokeparticle.png',
+        shotLengthPowerUp: 'assets/blast.png'
       };
     } // TODO: document
 
@@ -565,8 +566,6 @@ function truncateDecimals(number, digits) {
   var truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
   return truncatedNum / multiplier;
 }
-
-;
 
 function isMacintosh() {
   return navigator.platform.indexOf('Mac') > -1;

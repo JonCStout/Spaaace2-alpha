@@ -11,6 +11,8 @@ var _Ship = _interopRequireDefault(require("./Ship"));
 
 var _Missile = _interopRequireDefault(require("./Missile"));
 
+var _ShotLengthPowerUp = _interopRequireDefault(require("./ShotLengthPowerUp"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -34,6 +36,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var BASE_MISSILE_STEPS = 30; // 30 is original for updateRate 6 in main.js, less for higher
 
 var SpaaaceGameEngine =
 /*#__PURE__*/
@@ -61,6 +65,7 @@ function (_GameEngine) {
     value: function registerClasses(serializer) {
       serializer.registerClass(_Ship["default"]);
       serializer.registerClass(_Missile["default"]);
+      serializer.registerClass(_ShotLengthPowerUp["default"]);
     }
   }, {
     key: "initWorld",
@@ -88,9 +93,11 @@ function (_GameEngine) {
         var missile = collisionObjects.find(function (o) {
           return o instanceof _Missile["default"];
         });
-        if (!ship || !missile) return; // make sure not to process the collision between a missile and the ship that fired it
+        var shotLengthPowerUp = collisionObjects.find(function (o) {
+          return o instanceof _ShotLengthPowerUp["default"];
+        }); // make sure not to process the collision between a missile and the ship that fired it
 
-        if (missile.playerId !== ship.playerId) {
+        if (ship && missile && missile.playerId !== ship.playerId) {
           _this2.destroyMissile(missile.id);
 
           _this2.trace.info(function () {
@@ -101,6 +108,24 @@ function (_GameEngine) {
             missile: missile,
             ship: ship
           });
+
+          return; // skip further processing
+        } // powerUp collision: ignore non-ship collisions and ships already powered up
+
+
+        if (ship && shotLengthPowerUp && ship.missileLifeSteps == BASE_MISSILE_STEPS) {
+          console.log("PowerUp!  ".concat(ship, " -> ").concat(shotLengthPowerUp));
+          ship.missileLifeSteps = BASE_MISSILE_STEPS * 3; // length is 3x longer
+
+          _this2.timer.add(ship.missileLifeSteps * 10, _this2.shotLengthPowerDown, _this2, [ship]); // timer to remove powerup
+
+
+          var newX = Math.floor(Math.random() * (_this2.worldSettings.width - 200)) + 200;
+          var newY = Math.floor(Math.random() * (_this2.worldSettings.height - 200)) + 200; // console.log('old vector: ', shotLengthPowerUp.position);
+
+          shotLengthPowerUp.position.set(newX, newY); // move powerup *** not showing move?
+          // console.log('new vector: ', shotLengthPowerUp.position);
+          // return;  // skip further processing;  unneeded for last item
         }
       });
       this.on('postStep', this.reduceVisibleThrust.bind(this));
@@ -129,10 +154,10 @@ function (_GameEngine) {
           this.emit('fireMissile');
         }
       }
-    }
+    } // Makes a new ship, places it randomly and adds it to the game world
+
   }, {
     key: "makeShip",
-    // Makes a new ship, places it randomly and adds it to the game world
     value: function makeShip(playerId) {
       var newShipX = Math.floor(Math.random() * (this.worldSettings.width - 200)) + 200;
       var newShipY = Math.floor(Math.random() * (this.worldSettings.height - 200)) + 200;
@@ -140,9 +165,37 @@ function (_GameEngine) {
         position: new _lanceGg.TwoVector(newShipX, newShipY)
       });
       ship.playerId = playerId;
+      ship.missileLifeSteps = BASE_MISSILE_STEPS;
       this.addObjectToWorld(ship);
       console.log("ship added: ".concat(ship.toString()));
       return ship;
+    }
+  }, {
+    key: "makeShotLengthPowerUp",
+    value: function makeShotLengthPowerUp() {
+      var newX = Math.floor(Math.random() * (this.worldSettings.width - 200)) + 200;
+      var newY = Math.floor(Math.random() * (this.worldSettings.height - 200)) + 200;
+      var obj = new _ShotLengthPowerUp["default"](this, null, {
+        position: new _lanceGg.TwoVector(newX, newY)
+      });
+      obj.angle = Math.floor(Math.random() * 360); // obj.rotationSpeed = 1;
+
+      obj.width = 2; // obj.objId = id;  // don't overwrite obj.id!
+
+      this.addObjectToWorld(obj); // console.log(`ShotLengthPowerUp added: #${obj.id}`);
+
+      return obj;
+    } // remove powerup effect
+
+  }, {
+    key: "shotLengthPowerDown",
+    value: function shotLengthPowerDown(ship) {
+      if (ship) {
+        console.log("PowerDown for ship: ".concat(ship));
+        ship.missileLifeSteps = BASE_MISSILE_STEPS;
+      } else {
+        console.log('Can\'t powerdown a non-existant ship!');
+      }
     }
   }, {
     key: "makeMissile",
@@ -163,7 +216,7 @@ function (_GameEngine) {
       });
       var obj = this.addObjectToWorld(missile); // if the object was added successfully to the game world, destroy the missile after some game ticks
 
-      if (obj) this.timer.add(30, this.destroyMissile, this, [obj.id]);
+      if (obj) this.timer.add(playerShip.missileLifeSteps, this.destroyMissile, this, [obj.id]);
       return missile;
     } // destroy the missile if it still exists
 

@@ -137,7 +137,7 @@ export default class Ship extends DynamicObject {
             let newVX = this.shortestVector(this.position.x, this.target.position.x, this.gameEngine.worldSettings.width);
             let newVY = this.shortestVector(this.position.y, this.target.position.y, this.gameEngine.worldSettings.height);
             let angleToTarget = Math.atan2(newVX, newVY)/Math.PI* 180;
-            angleToTarget *= -1;
+            angleToTarget = -angleToTarget;
             angleToTarget += 90; // game uses zero angle on the right, clockwise
             if (angleToTarget < 0) angleToTarget += 360;
             let turnRight = this.shortestVector(this.angle, angleToTarget, 360);

@@ -1,8 +1,7 @@
 module.exports = {
     "extends": "google",
-    "installedESLint": true,
     "parserOptions": {
-        "ecmaVersion": 6,
+        "ecmaVersion": 7,
         "sourceType": "module"
     },
     "rules": {
@@ -15,6 +14,7 @@ module.exports = {
         "max-len": "off",
         "max-statements-per-line": ["error", { "max": 2 }],
         "no-console": "off",
+        "no-multi-spaces": "off",
         "no-warning-comments": "off",
         "object-curly-spacing": ["error", "always"],
         "space-before-blocks": 0,

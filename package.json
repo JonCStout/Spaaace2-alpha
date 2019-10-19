@@ -1,6 +1,6 @@
 {
   "name": "spaaace",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "engines": {
     "node": ">11.0.0"
   },

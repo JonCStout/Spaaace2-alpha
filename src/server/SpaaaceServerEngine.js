@@ -1,6 +1,8 @@
 import { ServerEngine } from 'lance-gg';
 const nameGenerator = require('./NameGenerator');
+
 const NUM_BOTS = 3;
+const NUM_POWERUPS = 10;
 
 export default class SpaaaceServerEngine extends ServerEngine {
 
@@ -15,6 +17,7 @@ export default class SpaaaceServerEngine extends ServerEngine {
         super.start();
 
         for (let x = 0; x < NUM_BOTS; x++) this.makeBot();
+        for (let i = 0; i < NUM_POWERUPS; i++)  this.gameEngine.makeShotLengthPowerUp();
 
         this.gameEngine.on('missileHit', e => {
 

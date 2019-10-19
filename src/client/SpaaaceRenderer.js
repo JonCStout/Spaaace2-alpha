@@ -17,7 +17,8 @@ export default class SpaaaceRenderer extends Renderer {
             bg2: 'assets/space2.png',
             bg3: 'assets/clouds2.png',
             bg4: 'assets/clouds1.png',
-            smokeParticle: 'assets/smokeparticle.png'
+            smokeParticle: 'assets/smokeparticle.png',
+            shotLengthPowerUp: 'assets/blast.png'
         };
     }
 
@@ -61,22 +62,22 @@ export default class SpaaaceRenderer extends Renderer {
                     url: this.assetPathPrefix + this.ASSETPATHS[x]
                 };
             }))
-            .load(() => {
-                this.isReady = true;
-                this.setupStage();
+                .load(() => {
+                    this.isReady = true;
+                    this.setupStage();
 
-                if (Utils.isTouchDevice()) {
-                    document.body.classList.add('touch');
-                } else if (isMacintosh()) {
-                    document.body.classList.add('mac');
-                } else if (isWindows()) {
-                    document.body.classList.add('pc');
-                }
+                    if (Utils.isTouchDevice()) {
+                        document.body.classList.add('touch');
+                    } else if (isMacintosh()) {
+                        document.body.classList.add('mac');
+                    } else if (isWindows()) {
+                        document.body.classList.add('pc');
+                    }
 
-                resolve();
+                    resolve();
 
-                this.gameEngine.emit('renderer.ready');
-            });
+                    this.gameEngine.emit('renderer.ready');
+                });
         });
     }
 
@@ -94,7 +95,7 @@ export default class SpaaaceRenderer extends Renderer {
 
         // parallax background
         this.bg1 = new PIXI.extras.TilingSprite(PIXI.loader.resources.bg1.texture,
-                this.viewportWidth, this.viewportHeight);
+            this.viewportWidth, this.viewportHeight);
         this.bg2 = new PIXI.extras.TilingSprite(PIXI.loader.resources.bg2.texture,
             this.viewportWidth, this.viewportHeight);
         this.bg3 = new PIXI.extras.TilingSprite(PIXI.loader.resources.bg3.texture,
@@ -283,7 +284,7 @@ export default class SpaaaceRenderer extends Renderer {
         this.playerShip = sprite;
         sprite.actor.shipSprite.tint = 0XFF00FF; // color  player ship
         document.body.classList.remove('lostGame');
-        if (!document.body.classList.contains('tutorialDone')){
+        if (!document.body.classList.contains('tutorialDone')) {
             document.body.classList.add('tutorial');
         }
         document.body.classList.remove('lostGame');
@@ -505,7 +506,7 @@ function truncateDecimals(number, digits) {
     let truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
 
     return truncatedNum / multiplier;
-};
+}
 
 function isMacintosh() {
     return navigator.platform.indexOf('Mac') > -1;

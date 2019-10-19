@@ -32,6 +32,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 var nameGenerator = require('./NameGenerator');
 
 var NUM_BOTS = 3;
+var NUM_POWERUPS = 10;
 
 var SpaaaceServerEngine =
 /*#__PURE__*/
@@ -59,6 +60,10 @@ function (_ServerEngine) {
 
       for (var x = 0; x < NUM_BOTS; x++) {
         this.makeBot();
+      }
+
+      for (var i = 0; i < NUM_POWERUPS; i++) {
+        this.gameEngine.makeShotLengthPowerUp();
       }
 
       this.gameEngine.on('missileHit', function (e) {

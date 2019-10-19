@@ -19,10 +19,12 @@ import SpaaaceGameEngine from './common/SpaaaceGameEngine.js';
 
 // Game Instances
 const gameEngine = new SpaaaceGameEngine({ traceLevel: Lib.Trace.TRACE_NONE });
+// const gameEngine = new SpaaaceGameEngine({ traceLevel: Lib.Trace.TRACE_INFO });
 const serverEngine = new SpaaaceServerEngine(io, gameEngine, {
     debug: {},
-    updateRate: 6,
-    timeoutInterval: 0 // no timeout
+    updateRate: 6,  // original = 6
+    timeoutInterval: 300  // original = 0
+    // stepRate: 20  // original = default
 });
 
 // start the game
