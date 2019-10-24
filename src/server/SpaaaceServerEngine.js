@@ -77,7 +77,7 @@ export default class SpaaaceServerEngine extends ServerEngine {
 
         this.scoreData[bot.id] = {
             kills: 0,
-            name: nameGenerator('general') + 'Bot'
+            name: nameGenerator('general') + 'BOT'
         };
 
         this.updateScore();

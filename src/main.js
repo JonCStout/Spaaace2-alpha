@@ -23,7 +23,7 @@ const gameEngine = new SpaaaceGameEngine({ traceLevel: Lib.Trace.TRACE_NONE });
 const serverEngine = new SpaaaceServerEngine(io, gameEngine, {
     debug: {},
     updateRate: 6,  // original = 6
-    timeoutInterval: 300  // original = 0
+    timeoutInterval: 900  // original = 0;  idle time until player is disconnected
     // stepRate: 20  // original = default
 });
 
