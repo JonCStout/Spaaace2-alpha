@@ -1,5 +1,10 @@
 node_modules
 dist/bundle.js
+dist/bundle.js.map
+dist-server/*
+dist-server/client/*
+dist-server/common/*
+dist-server/server/*
 webpack.config.js-backup1
 .idea/*
 

@@ -31,7 +31,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 var nameGenerator = require('./NameGenerator');
 
-var NUM_BOTS = 3;
+var NUM_BOTS = 10;
 var NUM_POWERUPS = 10;
 
 var SpaaaceServerEngine =

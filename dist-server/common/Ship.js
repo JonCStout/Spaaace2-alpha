@@ -134,8 +134,9 @@ function (_DynamicObject) {
         _this3.steer();
       };
 
-      this.gameEngine.on('preStep', this.onPreStep);
-      var fireLoopTime = Math.round(250 + Math.random() * 100);
+      this.gameEngine.on('preStep', this.onPreStep); // let fireLoopTime = Math.round(250 + Math.random() * 100);
+
+      var fireLoopTime = Math.round(10 + Math.random() * 90);
       this.fireLoop = this.gameEngine.timer.loop(fireLoopTime, function () {
         if (_this3.target && _this3.distanceToTargetSquared(_this3.target) < 160000) {
           _this3.gameEngine.makeMissile(_this3);

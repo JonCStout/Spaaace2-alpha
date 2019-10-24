@@ -95,7 +95,8 @@ export default class Ship extends DynamicObject {
 
         this.gameEngine.on('preStep', this.onPreStep);
 
-        let fireLoopTime = Math.round(250 + Math.random() * 100);
+        // let fireLoopTime = Math.round(250 + Math.random() * 100);
+        let fireLoopTime = Math.round(10 + Math.random() * 90);
         this.fireLoop = this.gameEngine.timer.loop(fireLoopTime, () => {
             if (this.target && this.distanceToTargetSquared(this.target) < 160000) {
                 this.gameEngine.makeMissile(this);
