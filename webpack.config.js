@@ -9,6 +9,9 @@ module.exports = {
     },
     mode: 'development',
     devtool: 'source-map',
+    resolve: {
+        symlinks: false
+    },
     module: {
         rules: [
             { test: /\.css$/, loader: 'style!css' },
@@ -23,10 +26,14 @@ module.exports = {
                     path.resolve(__dirname, 'node_modules/lance-gg/'),
                     fs.realpathSync('./node_modules/lance-gg/')
                 ],
-                loader: 'babel-loader',
-                query: {
-                    presets: ['@babel/preset-env'].map(require.resolve)
-                }
+                use: [
+                    { loader: 'thread-loader' },
+                    { loader: 'cache-loader' },
+                    {
+                        loader: 'babel-loader',       
+                        query: { presets: ['@babel/preset-env'].map(require.resolve) }
+                    }
+                ],
             }
         ]
     }
