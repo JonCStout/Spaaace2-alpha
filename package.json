@@ -56,7 +56,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lance-gg/spaaace.git"
+    "url": "git+https://github.com/JonCStout/Spaaace2-alpha.git"
   },
   "keywords": [
     "game",
@@ -65,7 +65,7 @@
     "multiplayer",
     "websockets"
   ],
-  "author": "Opher Vishnia",
+  "author": "Opher Vishnia, Jon Stout",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/lance-gg/spaaace/issues"
