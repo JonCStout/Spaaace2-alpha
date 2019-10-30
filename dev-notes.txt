@@ -1,5 +1,8 @@
 Todo/feature requests:
 - change powerup asset to something more free
+- clean up powerup console logging
+- figure out why powerups jerk to new spot, something with bending?
+- tweak network/screen updates to make things smoother?
 - scaling to more than 15 players, removing bots as players connect?  multiple game rooms?
 - message about why someone is disconnected for idling 900 seconds
 - allow bots to kill each other?  (probably need to change id from 0)
