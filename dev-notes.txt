@@ -7,7 +7,8 @@ Todo/feature requests:
 - message about why someone is disconnected for idling 900 seconds
 - allow bots to kill each other?  (probably need to change id from 0)
 - keep player's score visible after death for a while?
-- better intro to the controls, like we don't use down, and you need to HOLD up to move around faster (had someone try it out that didn't seem to get it)
+- better intro to the controls, like we don't use down, and you need to HOLD up
+  to move around faster (had someone try it out that didn't seem to get it)
 - other power ups, maybe spread shots, or faster propulsion, or faster turning?
 - make flames go straight backward?  weird when they seem to go through the ship
 - let players change their names?
@@ -18,4 +19,9 @@ Issues:
 - PIXI @ 5+ breaks multiple things on the front-end, visible in chrome's dev console after upgrade
 - raw-loader @ 1+ breaks css, and using "npx sass-migrator -d module .../main.scss" didn't help
 - playing on a tablet doesn't show on-screen controls when you join
-- if the server runs forever, will the object id's recycle or overflow?  shooting missiles causes them to bump up quickly
+- if the server runs forever, will the object id's recycle or overflow?  shooting missiles causes id's to bump up quickly
+
+References:
+- Original repo:  https://github.com/lance-gg/spaaace
+- Main toolkit, including docs, demos;  good intro to multiplayer networking issues:  http://lance.gg/
+- Front-end toolkit that Spaaace uses:  https://www.pixijs.com/
