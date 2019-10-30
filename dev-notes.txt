@@ -1,4 +1,5 @@
 Todo/feature requests:
+- change powerup asset to something more free
 - scaling to more than 15 players, removing bots as players connect?  multiple game rooms?
 - message about why someone is disconnected for idling 900 seconds
 - allow bots to kill each other?  (probably need to change id from 0)
