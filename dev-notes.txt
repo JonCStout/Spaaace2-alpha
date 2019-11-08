@@ -14,6 +14,9 @@ Todo/feature requests:
 - let players change their names?
 - persistent scores, kill/death ratios?
 - udp or better networking, maybe after lance 5?
+- allow a button for changing respawn location?  sometimes you're surrounded by a bot swarm
+- allow a mode for humans vs bots, so humans don't kill each other?
+  (make it optional somehow, perhaps on a per-ship basis?)  and visually represent the difference
 
 Issues:
 - PIXI @ 5+ breaks multiple things on the front-end, visible in chrome's dev console after upgrade
