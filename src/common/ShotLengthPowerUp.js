@@ -19,8 +19,9 @@ export default class ShotLengthPowerUp extends DynamicObject {
     // position correction if less than world width/height
     get bending() {
         return {
-            position: { max: 5000.0 },
-            velocity: { percent: 0.0 }
+            // position: { max: 5000.0 },
+            position: { percent: 1.0 },
+            velocity: { percent: 1.0 }
         };
     }
 

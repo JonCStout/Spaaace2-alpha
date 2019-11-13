@@ -1,7 +1,7 @@
 Todo/feature requests:
 - change powerup asset to something more free
 - clean up powerup console logging
-- figure out why powerups jerk to new spot, something with bending?
+x figure out why powerups jerk to new spot, something with bending?
 - tweak network/screen updates to make things smoother?
 - scaling to more than 15 players, removing bots as players connect?  multiple game rooms?
 - message about why someone is disconnected for idling 900 seconds
@@ -17,6 +17,7 @@ Todo/feature requests:
 - allow a button for changing respawn location?  sometimes you're surrounded by a bot swarm
 - allow a mode for humans vs bots, so humans don't kill each other?
   (make it optional somehow, perhaps on a per-ship basis?)  and visually represent the difference
+- explain the powerup in intro;  some people were avoiding it, thinking it was bad
 
 Issues:
 - PIXI @ 5+ breaks multiple things on the front-end, visible in chrome's dev console after upgrade
