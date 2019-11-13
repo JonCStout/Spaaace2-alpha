@@ -3,7 +3,7 @@ import Ship from './Ship';
 import Missile from './Missile';
 import ShotLengthPowerUp from './ShotLengthPowerUp';
 
-const BASE_MISSILE_STEPS = 30;  // 30 is original for updateRate 6 in main.js, less for higher
+const BASE_MISSILE_STEPS = 30;  // 30 is original, for updateRate 6 in main.js;  less for higher
 
 export default class SpaaaceGameEngine extends GameEngine {
 
@@ -51,14 +51,11 @@ export default class SpaaaceGameEngine extends GameEngine {
 
             // powerUp collision: ignore non-ship collisions and ships already powered up
             if (ship && shotLengthPowerUp && ship.missileLifeSteps == BASE_MISSILE_STEPS) {
-                console.log(`PowerUp!  ${ship} -> ${shotLengthPowerUp}`);
                 ship.missileLifeSteps = BASE_MISSILE_STEPS * 3;  // length is 3x longer
                 this.timer.add(ship.missileLifeSteps*10, this.shotLengthPowerDown, this, [ship]);  // timer to remove powerup
                 let newX = Math.floor(Math.random()*(this.worldSettings.width-200)) + 200;
                 let newY = Math.floor(Math.random()*(this.worldSettings.height-200)) + 200;
-                // console.log('old vector: ', shotLengthPowerUp.position);
                 shotLengthPowerUp.position.set(newX, newY);  // move powerup *** not showing move?
-                // console.log('new vector: ', shotLengthPowerUp.position);
                 // return;  // skip further processing;  unneeded for last item
             }
         });
@@ -116,12 +113,10 @@ export default class SpaaaceGameEngine extends GameEngine {
             position: new TwoVector(newX, newY)
         });
         obj.angle = Math.floor(Math.random()*360);
-        // obj.rotationSpeed = 1;
         obj.width = 2;
 
-        // obj.objId = id;  // don't overwrite obj.id!
+        // obj.objId = id;  // don't overwrite obj.id!  don't really need to save unique id anyway
         this.addObjectToWorld(obj);
-        // console.log(`ShotLengthPowerUp added: #${obj.id}`);
 
         return obj;
     }
@@ -129,7 +124,6 @@ export default class SpaaaceGameEngine extends GameEngine {
     // remove powerup effect
     shotLengthPowerDown(ship) {
         if (ship) {
-            console.log(`PowerDown for ship: ${ship}`);
             ship.missileLifeSteps = BASE_MISSILE_STEPS;
         } else {
             console.log('Can\'t powerdown a non-existant ship!');
