@@ -1,20 +1,20 @@
 Todo/feature requests:
 - change powerup asset to something more free
-- clean up powerup console logging
+x clean up powerup console logging
 x figure out why powerups jerk to new spot, something with bending?
-- tweak network/screen updates to make things smoother?
+x tweak network/screen updates to make things smoother?
 - scaling to more than 15 players, removing bots as players connect?  multiple game rooms?
 - message about why someone is disconnected for idling 900 seconds
 - allow bots to kill each other?  (probably need to change id from 0)
 - keep player's score visible after death for a while?
 - better intro to the controls, like we don't use down, and you need to HOLD up
   to move around faster (had someone try it out that didn't seem to get it)
-- other power ups, maybe spread shots, or faster propulsion, or faster turning?
+- other power ups: maybe spread shots, or faster propulsion, or faster turning?
 - make flames go straight backward?  weird when they seem to go through the ship
 - let players change their names?
 - persistent scores, kill/death ratios?
 - udp or better networking, maybe after lance 5?
-- allow a button for changing respawn location?  sometimes you're surrounded by a bot swarm
+x allow a button for changing respawn location?  sometimes you're surrounded by a bot swarm;  nah, just respawn
 - allow a mode for humans vs bots, so humans don't kill each other?
   (make it optional somehow, perhaps on a per-ship basis?)  and visually represent the difference
 - explain the powerup in intro;  some people were avoiding it, thinking it was bad
