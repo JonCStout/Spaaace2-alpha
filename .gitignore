@@ -10,3 +10,4 @@ webpack.config.js-backup1
 
 *.trace
 yarn.lock
+package-lock.json
