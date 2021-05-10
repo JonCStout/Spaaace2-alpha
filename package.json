@@ -18,7 +18,7 @@
         "howler": "^2.2.0",
         "json-loader": "^0.5.7",
         "lance-gg": "^4.0.8",
-        "lodash": "^4.17.20",
+        "lodash": "^4.17.21",
         "mixin-deep": "^2.0.1",
         "node-sass": "^4.14.1",
         "null-loader": "^3.0.0",
