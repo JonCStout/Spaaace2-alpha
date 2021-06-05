@@ -17,7 +17,7 @@
         "file-loader": "^4.3.0",
         "howler": "^2.2.0",
         "json-loader": "^0.5.7",
-        "lance-gg": "^4.0.8",
+        "lance-gg": "^4.0.9",
         "lodash": "^4.17.21",
         "mixin-deep": "^2.0.1",
         "node-sass": "^4.14.1",
